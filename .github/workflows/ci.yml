@@ -25,3 +25,11 @@ jobs:
         yarn link
         yarn link schematic-fp
         yarn test
+    - name: publish
+      env:
+        NPM_API_TOKEN: ${{ secrets.NPM_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        yarn version --patch
+        git push --tags
+        yarn publish
